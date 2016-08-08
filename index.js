@@ -16,6 +16,17 @@ export function toDecimal(dms) {
     return decimal * (N || E ? 1 : -1);
 }
 
+export function haversine(lat1, lon1, lat2, lon2, R) {
+    let dlon = lon2 - lon1;
+    let dlat = lat2 - lat1;
+    let a = Math.pow(Math.sin(dlat/2), 2) +
+            Math.cos(lat1) *
+            Math.cos(lat2) *
+            Math.pow(Math.sin(dlon/2), 2);
+    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+}
+
 export function distance(coord1, coord2) {
     return 0;
 }
