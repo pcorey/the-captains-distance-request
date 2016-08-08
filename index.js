@@ -13,7 +13,7 @@ export function toDecimal(dms) {
     let decimal = parseInt(degrees) +
                  (parseInt(minutes) / 60) +
                  (parseInt(seconds) / (60 * 60));
-    return decimal * (N || E ? 1 : -1);
+    return decimal * (N || E ? 1 : -1) * (Math.PI / 180);
 }
 
 export function haversine(lat1, lon1, lat2, lon2, R) {
