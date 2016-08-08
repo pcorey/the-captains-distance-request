@@ -1,13 +1,23 @@
 import { expect } from "chai";
-import { distance } from "../";
+import {
+    distance,
+    splitOnLatLon
+} from "../";
 
 describe("The captain's distance", function() {
 
     it("calculates the distance between two points", () => {
-        let coord1 = "48° 12′ 30″ N, 16° 22′ 23″ E";
-        let coord2 = "48° 12′ 30″ N, 16° 22′ 23″ E";
+        expect(distance(
+            "48° 12′ 30″ N, 16° 22′ 23″ E",
+            "48° 12′ 30″ N, 16° 22′ 23″ E"
+        )).to.equal(0);
+    });
 
-        expect(distance(coord1, coord2)).to.equal(0);
+    it("splits on lat/lon", () => {
+        expect(splitOnLatLon("48° 12′ 30″ N, 16° 22′ 23″ E")).to.deep.equal([
+            "48° 12′ 30″ N",
+            "16° 22′ 23″ E"
+        ]);
     });
 
 });
