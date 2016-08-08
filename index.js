@@ -28,5 +28,13 @@ export function haversine(lat1, lon1, lat2, lon2, R) {
 }
 
 export function distance(coord1, coord2) {
-    return 0;
+    return _.chain([coord1, coord2])
+        .map(splitOnLatLon)
+        .flatten()
+        .map(toDecimal)
+        .thru(([lat1, lon1, lat2, lon2]) => haversine(lat1, lon1, lat2, lon2, 6371))
+        .divide(10)
+        .floor()
+        .multiply(10)
+        .value();
 }
